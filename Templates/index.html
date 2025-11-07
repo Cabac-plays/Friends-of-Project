@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora Científica</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>🔢 Calculadora Científica Completa</h1>
+
+    <form method="post">
+        <h3>Operações Básicas</h3>
+        <input type="hidden" name="tipo" value="basica">
+        <input type="number" name="a" step="any" required> 
+        <select name="operacao">
+            <option value="soma">+</option>
+            <option value="sub">-</option>
+            <option value="mult">*</option>
+            <option value="div">/</option>
+        </select>
+        <input type="number" name="b" step="any" required>
+        <button type="submit">Calcular</button>
+    </form>
+
+    <form method="post">
+        <h3>Bhaskara</h3>
+        <input type="hidden" name="tipo" value="bhaskara">
+        a=<input type="number" name="a" step="any"> 
+        b=<input type="number" name="b" step="any"> 
+        c=<input type="number" name="c" step="any">
+        <button type="submit">Resolver</button>
+    </form>
+
+    <form method="post">
+        <h3>Trigonometria</h3>
+        <input type="hidden" name="tipo" value="trig">
+        Ângulo (graus): <input type="number" name="angulo" step="any">
+        <button type="submit">Calcular</button>
+    </form>
+
+    <form method="post">
+        <h3>Juros</h3>
+        <input type="hidden" name="tipo" value="juros">
+        Capital: <input type="number" name="capital" step="any">
+        Taxa (%): <input type="number" name="taxa" step="any">
+        Tempo: <input type="number" name="tempo" step="any">
+        <select name="modo">
+            <option value="simples">Simples</option>
+            <option value="composto">Composto</option>
+        </select>
+        <button type="submit">Calcular</button>
+    </form>
+
+    <form method="post">
+        <h3>Gráfico de Função</h3>
+        <input type="hidden" name="tipo" value="grafico">
+        f(x) = <input type="text" name="expressao" placeholder="ex: x**2 - 3*x + 2">
+        <button type="submit">Gerar</button>
+    </form>
+
+    {% if resultado %}
+        <h2>Resultado: {{ resultado }}</h2>
+    {% endif %}
+
+    {% if grafico %}
+        <img src="data:image/png;base64,{{ grafico }}" alt="Gráfico da Função">
+    {% endif %}
+</body>
+</html>
